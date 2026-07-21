@@ -98,6 +98,7 @@ const vehicleEntry = async (req, res) => {
   }
 };
 
+
 const vehicleExit = async (req, res) => {
   try {
     const { vehicleNumber } = req.body;

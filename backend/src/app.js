@@ -4,6 +4,9 @@ const morgan = require("morgan");
 
 const parkingRoutes = require("./routes/parkingRoutes");
 const vehicleRoutes = require("./routes/vehicleRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
+
+
 
 
 
@@ -15,6 +18,7 @@ app.use(morgan("dev"));
 
 app.use("/api/slots", parkingRoutes);
 app.use("/api/vehicles", vehicleRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 app.get("/", (req, res) => {
     res.json({

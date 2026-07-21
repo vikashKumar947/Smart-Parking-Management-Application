@@ -7,10 +7,7 @@ function Slots() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetchSlots();
-  }, []);
-
-  const fetchSlots = async () => {
+    const fetchSlots = async () => {
     try {
       const response = await getSlots();
       console.log(response.data);
@@ -22,6 +19,16 @@ function Slots() {
       setLoading(false);
     }
   };
+    fetchSlots();
+  }, []);
+
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+  
+  if (error) {
+    return <h2>{error}</h2>;
+  }
 
   return (
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

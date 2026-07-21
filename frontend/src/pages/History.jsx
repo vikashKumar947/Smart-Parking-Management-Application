@@ -7,24 +7,23 @@ function History() {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    const fetchHistory = async () => {
+      try {
+        const response = await getHistory();
+
+        setHistory(response.data);
+      } catch (err) {
+        console.log(err);
+
+        setError("Unable to load parking history");
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchHistory();
   }, []);
 
-  const fetchHistory = async () => {
-    try {
-      const response = await getHistory();
-
-      console.log(response.data);
-
-      setHistory(response.data.data);
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-
-      setError("Unable to load parking history");
-      setLoading(false);
-    }
-  };
   if (loading) {
     return <h2>Loading...</h2>;
   }

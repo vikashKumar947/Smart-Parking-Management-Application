@@ -1,10 +1,11 @@
+import axios from "axios";
 import { useState } from "react";
 
 const Exit = () => {
   const [vehicleNumber, setVehicleNumber] = useState("");
   const [vehicle, setVehicle] = useState(null);
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     if (!vehicleNumber.trim()) {
       alert("Please enter a vehicle number.");
       return;
@@ -21,28 +22,28 @@ const Exit = () => {
     });
   };
 
-  const handleExit = () => {
-    alert("Vehicle exited successfully!");
+  const handleExit = async () => {
+    try {
+      const res = await axios.post("http://localhost:8001/api/vehicles/exit", {
+        vehicleNumber,
+      });
 
-    // Later call backend API here
+      alert(res.data.message);
 
-    setVehicle(null);
-    setVehicleNumber("");
+      setVehicle(null);
+      setVehicleNumber("");
+    } catch (error) {
+      alert(error.response?.data?.message || "Something went wrong");
+    }
   };
-
   return (
     <div className="min-h-screen bg-gray-100 p-6">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">
-        Vehicle Exit
-      </h1>
+      <h1 className="text-3xl font-bold text-gray-800 mb-6">Vehicle Exit</h1>
 
       <div className="bg-white rounded-xl shadow-md p-6 max-w-2xl">
-
         {/* Search Vehicle */}
         <div className="mb-6">
-          <label className="block mb-2 font-medium">
-            Vehicle Number
-          </label>
+          <label className="block mb-2 font-medium">Vehicle Number</label>
 
           <div className="flex gap-3">
             <input
@@ -65,10 +66,7 @@ const Exit = () => {
         {/* Vehicle Details */}
         {vehicle && (
           <div className="border rounded-xl p-5 bg-gray-50">
-
-            <h2 className="text-xl font-semibold mb-4">
-              Vehicle Details
-            </h2>
+            <h2 className="text-xl font-semibold mb-4">Vehicle Details</h2>
 
             <div className="space-y-2">
               <p>
@@ -102,10 +100,8 @@ const Exit = () => {
             >
               Complete Exit
             </button>
-
           </div>
         )}
-
       </div>
     </div>
   );
