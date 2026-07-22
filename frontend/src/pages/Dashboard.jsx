@@ -7,6 +7,7 @@ import {
   FaRupeeSign,
   FaSignInAlt,
   FaCarSide,
+  FaClock,
 } from "react-icons/fa";
 import "./Dashboard.css";
 
@@ -16,6 +17,7 @@ function Dashboard() {
     availableSlots: 0,
     occupiedSlots: 0,
     activeVehicles: 0,
+    waitingVehicles: 0,
     todayEntries: 0,
     todayRevenue: 0,
   });
@@ -26,7 +28,7 @@ function Dashboard() {
         const res = await axios.get("http://localhost:8001/api/dashboard");
         setDashboard(res.data);
       } catch (error) {
-        console.log(error);
+        console.error("Dashboard Error:", error);
       }
     };
 
@@ -53,6 +55,11 @@ function Dashboard() {
       title: "Active Vehicles",
       value: dashboard.activeVehicles,
       icon: <FaCarSide />,
+    },
+    {
+      title: "Waiting Vehicles",
+      value: dashboard.waitingVehicles,
+      icon: <FaClock />,
     },
     {
       title: "Today's Entries",

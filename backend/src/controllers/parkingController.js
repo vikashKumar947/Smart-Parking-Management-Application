@@ -71,6 +71,7 @@ const getAvailableSlots = async (req, res) => {
     const slots = await Slot.find({ isOccupied: false }).sort({
       slotNumber: 1,
     });
+    
 
     res.status(200).json({
       success: true,

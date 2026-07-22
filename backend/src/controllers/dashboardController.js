@@ -1,5 +1,6 @@
 const Slot = require("../models/Slot");
 const ParkingRecord = require("../models/ParkingRecord");
+const WaitingVehicle = require("../models/WaitingVehicle");
 
 const getDashboardData = async (req, res) => {
   try {
@@ -15,6 +16,9 @@ const getDashboardData = async (req, res) => {
 
     const activeVehicles = await ParkingRecord.countDocuments({
       exitTime: null,
+    });
+    const waitingVehicles = await WaitingVehicle.countDocuments({
+      status: "Waiting",
     });
 
     const today = new Date();
@@ -34,7 +38,7 @@ const getDashboardData = async (req, res) => {
 
     const todayRevenue = todayRecords.reduce(
       (sum, record) => sum + record.parkingFee,
-      0
+      0,
     );
 
     res.json({
@@ -42,10 +46,10 @@ const getDashboardData = async (req, res) => {
       availableSlots,
       occupiedSlots,
       activeVehicles,
+      waitingVehicles,
       todayEntries,
       todayRevenue,
     });
-
   } catch (error) {
     res.status(500).json({
       message: error.message,
