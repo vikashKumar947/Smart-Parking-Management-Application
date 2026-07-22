@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://smart-parking-manager.onrender.com/api",
+  baseURL: "https://smart-parking-manager-backend.onrender.com/api",
 });
 
 export default api;

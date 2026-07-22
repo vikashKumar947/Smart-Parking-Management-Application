@@ -7,17 +7,18 @@ const vehicleRoutes = require("./routes/vehicleRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const queueRoutes = require("./routes/queueRoutes");
 
-const app = express();   // <-- MUST come before any app.use()
+const app = express(); 
 
 app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://smart-parking-manager-frontend.onrender.com",
+      "https://smart-parking-manager-frontend-ny98.onrender.com"
     ],
     credentials: true,
   })
 );
+
 app.use(express.json());
 app.use(morgan("dev"));
 
