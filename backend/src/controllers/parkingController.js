@@ -13,7 +13,7 @@ const initializeSlots = async (req, res) => {
         message: "Please enter a valid number of slots",
       });
     }
-
+    
     // Check if slots already exist
     const existingSlots = await Slot.countDocuments();
 
@@ -71,7 +71,7 @@ const getAvailableSlots = async (req, res) => {
     const slots = await Slot.find({ isOccupied: false }).sort({
       slotNumber: 1,
     });
-    
+
 
     res.status(200).json({
       success: true,
