@@ -25,7 +25,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchDashboard = async () => {
       try {
-        const res = await axios.get("https://smart-parking-manager-backend.onrender.com/api/dashboard");
+        const res = await axios.get("https://smart-parking-manager.onrender.com/api/dashboard");
         setDashboard(res.data);
       } catch (error) {
         console.error("Dashboard Error:", error);
