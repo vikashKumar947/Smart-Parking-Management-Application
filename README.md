@@ -6,7 +6,7 @@ Frontend:
 https://smart-parking-manager-frontend-ny98.onrender.com/
 
 Backend:
-https://smart-parking-manager-backend.onrender.com
+https://smart-parking-manager.onrender.com
 
 ## 📄 Project Report
 
